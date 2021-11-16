@@ -29,7 +29,23 @@ class Calculator extends Component {
     }
   };
 
-  
+  inputDot = () => {
+    const { output, waitingForEntry } = this.state;
+    if (waitingForEntry) {
+      this.setState({
+          output: ".",
+          waitingForEntry: false,
+      });
+    } else if (!output.includes(".")) {
+      this.setState((prevState) => {
+        return {
+          output: prevState.output + ".",
+          waitingForEntry: false,
+        };
+      });
+    }
+  };
+
   render() {
     return (
       <div>
