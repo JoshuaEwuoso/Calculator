@@ -46,6 +46,13 @@ class Calculator extends Component {
     }
   };
 
+  changeSign = () => {
+    const { output } = this.state;
+    this.setState({
+      output: output * -1,
+    });
+  };
+
   render() {
     return (
       <div>
