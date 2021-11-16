@@ -60,6 +60,41 @@ class Calculator extends Component {
     });
   };
 
+
+  operatorClick = (operatorClicked) => {
+    const { output, operator, lastEntry } = this.state;
+
+    const nextValue = parseFloat(output);
+
+    const operations = {
+      "/": (prevValue, nextValue) => prevValue / nextValue,
+      "*": (prevValue, nextValue) => prevValue * nextValue,
+      "-": (prevValue, nextValue) => prevValue - nextValue,
+      "+": (prevValue, nextValue) => prevValue + nextValue,
+      "=": (prevValue, nextValue) => nextValue,
+    };
+    if (lastEntry == null) {
+      this.setState({
+        lastEntry: nextValue,
+      });
+    } else if (operator) {
+      const currentValue = lastEntry || 0;
+      const computedValue = operations[operator](currentValue, nextValue);
+      this.setState(() => {
+        return {
+          lastEntry: computedValue,
+          output: computedValue,
+        };
+      });
+    }
+    this.setState(() => {
+      return {
+        waitingForEntry: true,
+        operator: operatorClicked,
+      };
+    });
+  };
+
   render() {
     return (
       <div>
