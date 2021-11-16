@@ -53,6 +53,13 @@ class Calculator extends Component {
     });
   };
 
+  getPercent = () => {
+    const { output } = this.state;
+    this.setState({
+      output: output / 100,
+    });
+  };
+
   render() {
     return (
       <div>
