@@ -96,11 +96,110 @@ class Calculator extends Component {
   };
 
   render() {
+    const { output } = this.state;
     return (
-      <div>
+      <>
         <h1>Calculator App</h1>
-      </div>
-    )
+        <div id="calculator-container" className="calcBorder">
+          <main id="output" className="number">{Number(output).toLocaleString("en-US")}</main>
+          <main>
+            <button 
+              onClick={() => this.setState({ output: "0", lastEntry: null,
+              waitingForEntry: false,
+              operator: null })}>
+                AC
+            </button>
+            <button 
+              onClick={this.changeSign}>
+                +/-
+            </button>
+            <button 
+              onClick={this.getPercent}>
+                %
+            </button>
+            <button
+              onClick={() => {
+                this.operatorClick("/");
+              }}
+              className="right">
+                ÷
+            </button>
+          </main>
+          <main>
+            <button value="7" onClick={() => this.inputNum(7)}>
+              7
+            </button>
+            <button value="8" onClick={() => this.inputNum(8)}>
+              8
+            </button>
+            <button value="9" onClick={() => this.inputNum(9)}>
+              9
+            </button>
+            <button
+              onClick={() => {
+                this.operatorClick("*");
+              }}
+              className="right">
+                x
+            </button>
+          </main>
+          <main>
+            <button value="4" onClick={() => this.inputNum(4)}>
+              4
+            </button>
+            <button value="5" onClick={() => this.inputNum(5)}>
+              5
+            </button>
+            <button value="6" onClick={() => this.inputNum(6)}>
+              6
+            </button>
+            <button
+              onClick={() => {
+                this.operatorClick("-");
+              }}
+              className="right">
+                -
+            </button>
+          </main>
+          <main>
+            <button value="1" onClick={() => this.inputNum(1)}>
+              1
+            </button>
+            <button value="2" onClick={() => this.inputNum(2)}>
+              2
+            </button>
+            <button value="3" onClick={() => this.inputNum(3)}>
+              3
+            </button>
+            <button
+              onClick={() => {
+                this.operatorClick("+");
+              }}
+              className="right">
+                +
+            </button>
+          </main>
+          <main>
+            <button id="zero" value="0" onClick={() => this.inputNum(0)}>
+              0
+            </button>
+            <button onClick={this.inputDot}>
+              .
+            </button>
+            <button
+              onClick={() => {
+                this.operatorClick("=");
+              }}
+              className="right">
+                =
+            </button>
+          </main>
+        </div>
+        <div>
+        <footer className="bottom">Copyright &copy; 2021 | GhostPen</footer>
+        </div>
+      </>
+    );
   }
 }
 
