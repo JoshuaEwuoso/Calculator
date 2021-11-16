@@ -11,6 +11,25 @@ class Calculator extends Component {
       operator: null,
     };
   }
+
+  inputNum = (num) => {
+    const { output, waitingForEntry } = this.state;
+    let number = String(num);
+    if (waitingForEntry) {
+      this.setState(() => {
+        return {
+          output: number,
+          waitingForEntry: false,
+        };
+      });
+    } else {
+      this.setState({
+        output: output === "0" ? number : output + number,
+      });
+    }
+  };
+
+  
   render() {
     return (
       <div>
